@@ -4,21 +4,10 @@ import sqlite3
 
 app = Flask(__name__)
 
-# @app.route("/")
-# def pagar_pessoas():
+@app.route("/")
+def boas_vindas():
 
-#     return "<h1>Começar a semana, pagando suas dívidas, é bom demais</h1>"
-
-
-# @app.route("/pix")
-# def mande_o_pix():
-
-#     return "<h1>Pagar as pessoas faz bem pras pessoas!! =D</h1>"
-
-# @app.route("/comidas")
-# def prato_do_dia():
-
-#     return "<h1>O prato do dia é feijoada com farofinha com bacon e de sobremesa brownie com sorvete!!!</h1>"
+    return "<h1>Seja bem vindo! Cadastre e veja os livros que temos disponiveis!!</h1>"
 
 
 def init_db():
