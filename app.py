@@ -36,7 +36,9 @@ def init_db():
             """
         )
 
+
 init_db()
+
 
 @app.route("/doar", methods=["POST"])
 def doar():
@@ -50,8 +52,7 @@ def doar():
     image_url = dados.get("image_url")
 
     if not titulo or not categoria or not autor or not image_url:
-        return jsonify({"erro":"Todos os campos são obrigatórios"}),400
-    
+        return jsonify({"erro": "Todos os campos são obrigatórios"}), 400
 
     with sqlite3.connect("database.db") as conn:
 
@@ -60,11 +61,30 @@ def doar():
         VALUES("{titulo}","{categoria}","{autor}","{image_url}")
         """)
 
-    conn.commit()
+        conn.commit()
 
-    return jsonify({"mensagem": "Livro cadastrado com sucesso"}), 201
+        return jsonify({"mensagem": "Livro cadastrado com sucesso"}), 201
 
 
+@app.route("/livros", methods=["GET"])
+def listar_livros():
+
+    with sqlite3.connect("database.db") as conn:
+        livros = conn.execute("SELECT * FROM LIVROS").fetchall()
+
+        livros_formatados = []
+
+        for item in livros:
+            dicionario_livros = {
+                "id":item[0],
+                "titulo":item[1],
+                "categoria":item[2],
+                "autor":item[3],
+                "image_url":item[4]
+            }
+            livros_formatados.append(dicionario_livros)
+
+    return jsonify(livros_formatados)
 
 if __name__ == "__main__":
     app.run(debug=True)
