@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 def boas_vindas():
 
-    return "<h1>Seja bem vindo! Cadastre e veja os livros que temos disponiveis!!</h1>"
+    return "<h1>Seja bem vindo! Cadastre seus livros e veja os livros que temos disponiveis!!</h1>"
 
 
 def init_db():
